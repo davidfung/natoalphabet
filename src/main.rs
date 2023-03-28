@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::time::Instant;
 
 fn load_alphabet() -> HashMap<&'static str, &'static str> {
     HashMap::from([
@@ -35,6 +36,8 @@ fn main() {
     let mut score = 0;
     let mut count = 0;
     let alphabet = load_alphabet();
+    let now = Instant::now();
+
     for (k,v) in &alphabet {
         count = count +1;
         println!("{}?", k);
@@ -49,4 +52,7 @@ fn main() {
             println!("===> Wrong! Should be {}!  Score:{}/{}", v, score, count);
         }
     }
+
+    let elapsed_time = now.elapsed();
+    println!("Time taken: {} seconds", elapsed_time.as_secs());
 }
